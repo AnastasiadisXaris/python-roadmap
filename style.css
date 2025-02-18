@@ -8,6 +8,7 @@ body {
 .title {
     font-size: 2.5em;
     animation: fadeIn 2s ease-in-out;
+    color: white;
 }
 
 .subtitle {
@@ -52,9 +53,11 @@ svg {
 }
 
 .node-group:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
     transition: transform 0.3s ease-in-out;
+    filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.8));
 }
+
 
 text {
     font-family: 'Arial', sans-serif;
@@ -69,3 +72,69 @@ text {
 .node-group {
     animation: glow 1.5s infinite alternate;
 }
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#markdown-content {
+    font-family: 'Arial', sans-serif;
+    background: white;
+    color: black;
+    text-align: left;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    margin: auto;
+}
+
+#markdown-content h1 {
+    color: #1e3c72;
+    border-bottom: 2px solid #1e3c72;
+    padding-bottom: 5px;
+}
+
+#markdown-content h2 {
+    color: #2a5298;
+}
+
+#markdown-content p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#markdown-content code {
+    background: #eee;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#markdown-content blockquote {
+    background: #eee;
+    padding: 10px;
+    border-left: 5px solid #1e3c72;
+    padding: 10px;
+}
+
+
