@@ -1,0 +1,13 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+.node {
+    fill: steelblue;
+    stroke: black;
+    stroke-width: 2px;
+}
+.link {
+    stroke: gray;
+    stroke-width: 2px;
+}
