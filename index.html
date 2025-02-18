@@ -8,8 +8,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Python Roadmap</h1>
+    <h1 class="title">Python Roadmap 🚀</h1>
+    <p class="subtitle">Ανακάλυψε τα πιο σημαντικά μονοπάτια για την εκμάθηση της Python!</p>
     <svg></svg>
     <script src="script.js"></script>
+    <div id="markdown-content"></div>
+    
+    <script>
+        async function loadMarkdown() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const file = urlParams.get('file');
+            if (file) {
+                const response = await fetch(file);
+                const text = await response.text();
+                document.getElementById("markdown-content").innerText = text;
+            }
+        }
+        loadMarkdown();
+    </script>
+
 </body>
 </html>

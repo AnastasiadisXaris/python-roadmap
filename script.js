@@ -24,25 +24,20 @@ const svg = d3.select("svg")
     .attr("height", height);
 
 const simulation = d3.forceSimulation(data.nodes)
-    .force("link", d3.forceLink(data.links).id(d => d.id))
-    .force("charge", d3.forceManyBody())
+    .force("link", d3.forceLink(data.links).id(d => d.id).distance(200)) // Μεγαλύτερη απόσταση
+    .force("charge", d3.forceManyBody().strength(-500)) // Οι κόμβοι απλώνονται περισσότερο
     .force("center", d3.forceCenter(width / 2, height / 2));
 
 const link = svg.selectAll(".link")
     .data(data.links)
     .enter().append("line")
-    .attr("class", "link")
-    .style("stroke-dasharray", "5,5") // Εφέ γραμμής
-    .style("opacity", 0)
-    .transition()
-    .duration(1000)
-    .style("opacity", 1);
+    .attr("class", "link");
 
 const node = svg.selectAll(".node")
     .data(data.nodes)
     .enter().append("circle")
     .attr("class", "node")
-    .attr("r", 20)
+    .attr("r", 30) // Μεγαλύτερο μέγεθος κόμβων
     .call(d3.drag()
         .on("start", dragStarted)
         .on("drag", dragged)
@@ -52,15 +47,13 @@ const node = svg.selectAll(".node")
     .on("mouseout", hideTooltip)
     .on("click", openFile);
 
-// Προσθήκη κειμένου σε κάθε κόμβο
 const text = svg.selectAll(".text")
     .data(data.nodes)
     .enter().append("text")
     .text(d => d.id)
-    .attr("dx", 25)
+    .attr("dx", 35)
     .attr("dy", 5);
 
-// Ενημέρωση θέσης κατά την προσομοίωση
 simulation.on("tick", () => {
     link.attr("x1", d => d.source.x)
         .attr("y1", d => d.source.y)
@@ -74,7 +67,6 @@ simulation.on("tick", () => {
         .attr("y", d => d.y);
 });
 
-// Λειτουργίες drag & drop
 function dragStarted(event, d) {
     if (!event.active) simulation.alphaTarget(0.3).restart();
     d.fx = d.x;
@@ -92,15 +84,9 @@ function dragEnded(event, d) {
     d.fy = null;
 }
 
-// Προσθήκη tooltips
 const tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
-    .style("position", "absolute")
-    .style("visibility", "hidden")
-    .style("background", "white")
-    .style("border", "1px solid black")
-    .style("padding", "5px")
-    .style("border-radius", "5px");
+    .style("visibility", "hidden");
 
 function showTooltip(event, d) {
     tooltip.style("visibility", "visible").text(`Ενότητα: ${d.id}`);
@@ -115,7 +101,6 @@ function hideTooltip() {
     tooltip.style("visibility", "hidden");
 }
 
-// Αντιστοίχιση αρχείων σε κόμβους
 const fileMap = {
     "Python Basics": "python_basics.md",
     "Data Structures": "data_structures.md",
