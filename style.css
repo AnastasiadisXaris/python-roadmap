@@ -2,12 +2,29 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
 }
+
+svg {
+    width: 100%;
+    height: 80vh;
+}
+
 .node {
     fill: steelblue;
     stroke: black;
     stroke-width: 2px;
+    transition: fill 0.3s ease;
 }
+
+.node:hover {
+    fill: orange;
+}
+
 .link {
     stroke: gray;
     stroke-width: 2px;
+}
+
+.tooltip {
+    font-size: 14px;
+    font-weight: bold;
 }
