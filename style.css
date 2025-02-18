@@ -137,4 +137,14 @@ text {
     padding: 10px;
 }
 
+@media (max-width: 480px) {
+    .modal {
+        width: 90%;
+        font-size: 14px;
+    }
+
+    .close {
+        font-size: 18px;
+    }
+}
 
